@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ernesto Camou — AI, DevOps & Web Solutions</title>
+<meta name="description" content="AI assistants, private AI infrastructure, websites, and DevOps consulting. Based in New York City.">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0c0c0c;--bg2:#141414;--bg3:#1c1c1c;--amber:#f59e0b;--amber-dim:#b45309;--text:#e5e5e5;--muted:#9ca3af;--border:#262626;--radius:12px}
+html{scroll-behavior:smooth;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+a{color:var(--amber);text-decoration:none;transition:opacity .2s}
+a:hover{opacity:.8}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,12,12,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:1.2rem;font-weight:700;color:#fff;letter-spacing:-.01em}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);font-size:.875rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff;opacity:1}
+.nav-cta{background:var(--amber);color:#000;padding:.5rem 1.25rem;border-radius:8px;font-size:.875rem;font-weight:600;transition:background .2s}
+.nav-cta:hover{background:#d97706;opacity:1}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(12,12,12,.97);backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:2rem;z-index:99}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text);font-size:1.25rem;font-weight:500}
+
+@media(max-width:768px){
+  .nav-links,.nav-cta-wrap{display:none}
+  .hamburger{display:flex}
+}
+
+/* Sections */
+section{padding:6rem 2rem}
+.container{max-width:1000px;margin:0 auto}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
+.section-title{font-size:2.25rem;font-weight:800;line-height:1.15;margin-bottom:1rem;color:#fff;letter-spacing:-.02em}
+.section-sub{color:var(--muted);font-size:1.1rem;max-width:600px;margin-bottom:3rem}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(245,158,11,.06) 0%,transparent 70%);pointer-events:none}
+.hero-content{max-width:700px}
+.hero h1{font-size:clamp(2.5rem,5.5vw,4rem);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:1rem;color:#fff}
+.hero .tagline{font-size:1.5rem;font-weight:400;color:var(--amber);margin-bottom:1rem}
+.hero .location{font-size:1.1rem;color:var(--muted);margin-bottom:2.5rem}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.875rem 2rem;border-radius:10px;font-weight:600;font-size:1rem;transition:all .2s}
+.btn-primary{background:var(--amber);color:#000}
+.btn-primary:hover{background:#d97706;opacity:1}
+.btn-outline{border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:var(--amber);color:#fff;opacity:1}
+
+/* Services */
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:768px){.services-grid{grid-template-columns:1fr}}
+.service-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:border-color .3s}
+.service-card:hover{border-color:var(--amber)}
+.service-icon{font-size:1.75rem;margin-bottom:1rem}
+.service-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.5rem;color:#fff}
+.service-card p{font-size:.9rem;color:var(--muted);margin-bottom:.75rem}
+.service-card a.service-link{font-size:.85rem;font-weight:600;color:var(--amber)}
+
+/* About */
+.about-section{display:grid;grid-template-columns:1fr;gap:2rem}
+.about-text p{color:var(--muted);font-size:1rem;margin-bottom:1rem}
+.about-quote{font-size:1.25rem;font-weight:600;color:#fff;border-left:3px solid var(--amber);padding-left:1.25rem;margin-top:1rem;font-style:italic}
+
+/* How I Work */
+.process-steps{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;counter-reset:process}
+@media(max-width:768px){.process-steps{grid-template-columns:1fr}}
+.process-step{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;counter-increment:process;position:relative}
+.process-step::before{content:counter(process);font-size:2.5rem;font-weight:900;color:var(--amber);opacity:.15;position:absolute;top:.75rem;right:1.25rem;line-height:1}
+.process-step h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;color:#fff}
+.process-step p{font-size:.9rem;color:var(--muted)}
+
+/* Pricing */
+.pricing-table{display:grid;gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
+.pricing-row{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);padding:1.25rem 1.5rem}
+.pricing-row:nth-child(even){background:var(--bg2)}
+.pricing-row .service-name{font-weight:600;color:#fff;font-size:.95rem}
+.pricing-row .service-price{color:var(--muted);font-size:.95rem;text-align:right}
+
+/* Contact */
+.contact-section{text-align:center}
+.contact-links{display:flex;gap:2rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.contact-link{display:flex;align-items:center;gap:.5rem;color:var(--muted);font-size:1rem;transition:color .2s}
+.contact-link:hover{color:var(--amber);opacity:1}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--muted);font-size:.85rem}
+footer a{color:var(--muted);margin:0 .5rem}
+footer a:hover{color:var(--amber)}
+.footer-links{margin-top:.5rem}
+
+/* Animations */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">camou<span>.dev</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <div class="nav-cta-wrap"><a href="#contact" class="nav-cta">Let's Talk</a></div>
+  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu">
+  <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Services</a>
+  <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
+  <a href="#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Pricing</a>
+  <a href="#contact" class="btn btn-primary" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Let's Talk</a>
+</div>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Ernesto Camou</h1>
+      <p class="tagline">AI, DevOps &amp; Web Solutions</p>
+      <p class="location">Based in New York City</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Free Consultation</a>
+        <a href="#services" class="btn btn-outline">What I Do</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">What I Do</p>
+      <h2 class="section-title">Solutions that actually work.</h2>
+      <p class="section-sub">I build, deploy, and maintain the technology your business runs on.</p>
+    </div>
+    <div class="services-grid fade-in">
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <h3>AI Assistants</h3>
+        <p>Custom AI bots for your business. Answers customers via WhatsApp and SMS, 24/7 — in English and Spanish.</p>
+        <a href="https://jannikai.com" class="service-link">Learn more at Jannik AI →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔒</div>
+        <h3>Private AI Infrastructure</h3>
+        <p>On-premise AI deployments. Mac Studio + open-source models. HIPAA and compliance ready. Data never leaves your building.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+        <h3>Websites &amp; Hosting</h3>
+        <p>Clean, fast websites for small businesses. Menus, landing pages, portfolios. Hosted and maintained — you don't touch a server.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>DevOps Consulting</h3>
+        <p>Cloud infrastructure, Kubernetes, CI/CD, Terraform, Ansible. Remote or on-site. I make your deployments boring (in a good way).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="background:var(--bg2)">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">About</p>
+      <h2 class="section-title">The short version.</h2>
+    </div>
+    <div class="about-section fade-in">
+      <div class="about-text">
+        <p>DevOps and SRE engineer based in NYC. 10+ years building and managing cloud infrastructure — OpenShift, Kubernetes, AWS, Azure, the works.</p>
+        <p>More recently, I've been building and deploying AI solutions for businesses across industries. Not the kind that lives in a pitch deck — the kind that actually runs in production and talks to your customers.</p>
+        <div class="about-quote">"I'm not a startup with a pitch deck. I'm the guy who actually does the work."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">How I Work</p>
+      <h2 class="section-title">Straightforward process. No runaround.</h2>
+    </div>
+    <div class="process-steps fade-in">
+      <div class="process-step">
+        <h3>Free consultation</h3>
+        <p>30 minutes. You tell me what you need. I tell you if I can help and what it'll take.</p>
+      </div>
+      <div class="process-step">
+        <h3>Honest quote</h3>
+        <p>I scope the project and give you a real number. No surprise invoices, no scope creep games.</p>
+      </div>
+      <div class="process-step">
+        <h3>Build &amp; deploy</h3>
+        <p>I build it, deploy it, and make sure it actually works. You get updates, not excuses.</p>
+      </div>
+      <div class="process-step">
+        <h3>Ongoing support</h3>
+        <p>If you need it, I'm here. Maintenance, updates, scaling — whatever keeps things running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="background:var(--bg2)">
+  <div class="container">
+    <div class="fade-in">
+      <p class="section-label">Pricing</p>
+      <h2 class="section-title">What things cost.</h2>
+      <p class="section-sub">Transparent pricing. No "contact us for a quote" games — here's the range.</p>
+    </div>
+    <div class="pricing-table fade-in">
+      <div class="pricing-row">
+        <div class="service-name">Websites</div>
+        <div class="service-price">$500–2,000 one-time + $50–100/mo hosting</div>
+      </div>
+      <div class="pricing-row">
+        <div class="service-name">AI Assistants</div>
+        <div class="service-price">from $500/month via <a href="https://jannikai.com" style="color:var(--amber)">Jannik AI</a></div>
+      </div>
+      <div class="pricing-row">
+        <div class="service-name">Private AI Setup</div>
+        <div class="service-price">from $1,500/month</div>
+      </div>
+      <div class="pricing-row">
+        <div class="service-name">DevOps Consulting</div>
+        <div class="service-price">$150–250/hour</div>
+      </div>
+      <div class="pricing-row">
+        <div class="service-name">Custom Projects</div>
+        <div class="service-price">Let's talk</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container contact-section fade-in">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title" style="text-align:center">Let's talk about what you need.</h2>
+    <p class="section-sub" style="margin:0 auto 1rem;text-align:center">30-minute consultation, free, no strings. Just a conversation about your project.</p>
+    <a href="mailto:ernesto@camou.dev" class="btn btn-primary">Get in Touch</a>
+    <div class="contact-links">
+      <a href="mailto:ernesto@camou.dev" class="contact-link">📧 ernesto@camou.dev</a>
+      <a href="https://linkedin.com/in/ernestocamou" class="contact-link">💼 LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Ernesto Camou — New York City</p>
+  <div class="footer-links">
+    <a href="https://jannikai.com">Jannik AI</a>
+    <a href="https://linkedin.com/in/ernestocamou">LinkedIn</a>
+    <a href="https://github.com/ernestocamou">GitHub</a>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
