@@ -3,275 +3,370 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ernesto Camou — AI, DevOps & Web Solutions</title>
-<meta name="description" content="AI assistants, private AI infrastructure, websites, and DevOps consulting. Based in New York City.">
+<title>Camou — AI, DevOps & Web Solutions</title>
+<meta name="description" content="Camou — AI, DevOps & Web consulting based in New York City. Custom AI assistants, private infrastructure, websites, and cloud consulting. Services available in English and Spanish.">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0c0c0c;--bg2:#141414;--bg3:#1c1c1c;--amber:#f59e0b;--amber-dim:#b45309;--text:#e5e5e5;--muted:#9ca3af;--border:#262626;--radius:12px}
-html{scroll-behavior:smooth;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
-body{overflow-x:hidden}
-a{color:var(--amber);text-decoration:none;transition:opacity .2s}
-a:hover{opacity:.8}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,12,12,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-size:1.2rem;font-weight:700;color:#fff;letter-spacing:-.01em}
-.nav-logo span{color:var(--amber)}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{color:var(--muted);font-size:.875rem;font-weight:500;transition:color .2s}
-.nav-links a:hover{color:#fff;opacity:1}
-.nav-cta{background:var(--amber);color:#000;padding:.5rem 1.25rem;border-radius:8px;font-size:.875rem;font-weight:600;transition:background .2s}
-.nav-cta:hover{background:#d97706;opacity:1}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-.hamburger span{display:block;width:24px;height:2px;background:#fff;transition:all .3s}
-.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(12,12,12,.97);backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:2rem;z-index:99}
-.mobile-menu.open{display:flex}
-.mobile-menu a{color:var(--text);font-size:1.25rem;font-weight:500}
-
-@media(max-width:768px){
-  .nav-links,.nav-cta-wrap{display:none}
-  .hamburger{display:flex}
+:root {
+  --bg: #0c0c0c;
+  --bg-card: #151515;
+  --bg-card-hover: #1a1a1a;
+  --accent: #f59e0b;
+  --accent-dim: rgba(245,158,11,0.15);
+  --text: #e5e5e5;
+  --text-dim: #999;
+  --text-bright: #fff;
+  --border: #222;
+  --nav-h: 64px;
+  --max-w: 1100px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Sections */
-section{padding:6rem 2rem}
-.container{max-width:1000px;margin:0 auto}
-.section-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
-.section-title{font-size:2.25rem;font-weight:800;line-height:1.15;margin-bottom:1rem;color:#fff;letter-spacing:-.02em}
-.section-sub{color:var(--muted);font-size:1.1rem;max-width:600px;margin-bottom:3rem}
+html { scroll-behavior: smooth; background: var(--bg); }
+body { font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-/* Hero */
-.hero{min-height:100vh;display:flex;align-items:center;padding-top:64px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-30%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(245,158,11,.06) 0%,transparent 70%);pointer-events:none}
-.hero-content{max-width:700px}
-.hero h1{font-size:clamp(2.5rem,5.5vw,4rem);font-weight:900;line-height:1.05;letter-spacing:-.03em;margin-bottom:1rem;color:#fff}
-.hero .tagline{font-size:1.5rem;font-weight:400;color:var(--amber);margin-bottom:1rem}
-.hero .location{font-size:1.1rem;color:var(--muted);margin-bottom:2.5rem}
-.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
-.btn{display:inline-block;padding:.875rem 2rem;border-radius:10px;font-weight:600;font-size:1rem;transition:all .2s}
-.btn-primary{background:var(--amber);color:#000}
-.btn-primary:hover{background:#d97706;opacity:1}
-.btn-outline{border:1px solid var(--border);color:var(--text)}
-.btn-outline:hover{border-color:var(--amber);color:#fff;opacity:1}
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+  background: rgba(12,12,12,0.85);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+nav .logo { font-weight: 700; font-size: 1.1rem; color: var(--text-bright); letter-spacing: -0.02em; }
+nav .logo span { color: var(--accent); }
+nav .nav-links { display: flex; gap: 2rem; list-style: none; }
+nav .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+nav .nav-links a:hover { color: var(--accent); }
 
-/* Services */
-.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-@media(max-width:768px){.services-grid{grid-template-columns:1fr}}
-.service-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:border-color .3s}
-.service-card:hover{border-color:var(--amber)}
-.service-icon{font-size:1.75rem;margin-bottom:1rem}
-.service-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.5rem;color:#fff}
-.service-card p{font-size:.9rem;color:var(--muted);margin-bottom:.75rem}
-.service-card a.service-link{font-size:.85rem;font-weight:600;color:var(--amber)}
+/* hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* About */
-.about-section{display:grid;grid-template-columns:1fr;gap:2rem}
-.about-text p{color:var(--muted);font-size:1rem;margin-bottom:1rem}
-.about-quote{font-size:1.25rem;font-weight:600;color:#fff;border-left:3px solid var(--amber);padding-left:1.25rem;margin-top:1rem;font-style:italic}
+/* mobile nav */
+.mobile-menu {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  background: rgba(12,12,12,0.97); backdrop-filter: blur(16px);
+  flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+  z-index: 99;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { color: var(--text-bright); text-decoration: none; font-size: 1.4rem; font-weight: 600; transition: color 0.2s; }
+.mobile-menu a:hover { color: var(--accent); }
 
-/* How I Work */
-.process-steps{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;counter-reset:process}
-@media(max-width:768px){.process-steps{grid-template-columns:1fr}}
-.process-step{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;counter-increment:process;position:relative}
-.process-step::before{content:counter(process);font-size:2.5rem;font-weight:900;color:var(--amber);opacity:.15;position:absolute;top:.75rem;right:1.25rem;line-height:1}
-.process-step h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;color:#fff}
-.process-step p{font-size:.9rem;color:var(--muted)}
+@media (max-width: 768px) {
+  nav .nav-links { display: none; }
+  .hamburger { display: flex; }
+}
 
-/* Pricing */
-.pricing-table{display:grid;gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)}
-.pricing-row{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);padding:1.25rem 1.5rem}
-.pricing-row:nth-child(even){background:var(--bg2)}
-.pricing-row .service-name{font-weight:600;color:#fff;font-size:.95rem}
-.pricing-row .service-price{color:var(--muted);font-size:.95rem;text-align:right}
+/* ---- SECTIONS ---- */
+section { padding: 6rem clamp(1.25rem, 4vw, 3rem); }
+.section-inner { max-width: var(--max-w); margin: 0 auto; }
+.section-label {
+  display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+}
+.section-title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; color: var(--text-bright); margin-bottom: 1.5rem; letter-spacing: -0.02em; line-height: 1.2; }
 
-/* Contact */
-.contact-section{text-align:center}
-.contact-links{display:flex;gap:2rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
-.contact-link{display:flex;align-items:center;gap:.5rem;color:var(--muted);font-size:1rem;transition:color .2s}
-.contact-link:hover{color:var(--amber);opacity:1}
+/* ---- HERO ---- */
+#hero {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding-top: var(--nav-h);
+}
+#hero .hero-inner { max-width: 700px; }
+#hero h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); font-weight: 800; color: var(--text-bright); letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1rem; }
+#hero .tagline { font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: var(--text-dim); font-weight: 400; margin-bottom: 0.5rem; }
+#hero .location { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 2.5rem; }
+#hero .location span { color: var(--accent); }
+#hero .cta {
+  display: inline-block; padding: 0.85rem 2.2rem; background: var(--accent); color: #0c0c0c;
+  font-weight: 700; font-size: 0.95rem; text-decoration: none; border-radius: 6px;
+  transition: background 0.2s, transform 0.2s;
+}
+#hero .cta:hover { background: #d97706; transform: translateY(-1px); }
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  color: var(--text-dim); font-size: 0.8rem; opacity: 0.5; animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
 
-/* Footer */
-footer{border-top:1px solid var(--border);padding:2rem;text-align:center;color:var(--muted);font-size:.85rem}
-footer a{color:var(--muted);margin:0 .5rem}
-footer a:hover{color:var(--amber)}
-.footer-links{margin-top:.5rem}
+/* ---- SERVICES ---- */
+#services { background: var(--bg); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+.service-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 2rem 1.75rem; transition: border-color 0.3s, transform 0.3s, background 0.3s;
+}
+.service-card:hover { border-color: var(--accent); background: var(--bg-card-hover); transform: translateY(-3px); }
+.service-card .icon { font-size: 1.6rem; margin-bottom: 1rem; }
+.service-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-bright); margin-bottom: 0.75rem; }
+.service-card p { font-size: 0.92rem; color: var(--text-dim); line-height: 1.65; }
+.service-card a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.service-card a:hover { text-decoration: underline; }
 
-/* Animations */
-.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
+/* ---- ABOUT ---- */
+#about { background: var(--bg); }
+#about .about-text { max-width: 680px; }
+#about .about-text p { margin-bottom: 1.25rem; font-size: 1.05rem; color: var(--text); line-height: 1.75; }
+#about .quote {
+  border-left: 3px solid var(--accent); padding-left: 1.25rem; margin-top: 2rem;
+  font-style: italic; color: var(--text-bright); font-size: 1.1rem;
+}
+
+/* ---- PROCESS ---- */
+#process { background: var(--bg); }
+.process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1rem; counter-reset: step; }
+.step {
+  position: relative; padding: 2rem 1.75rem; background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 10px; counter-increment: step;
+}
+.step::before {
+  content: counter(step); position: absolute; top: 1.25rem; right: 1.25rem;
+  font-size: 2.5rem; font-weight: 800; color: var(--accent-dim); line-height: 1;
+}
+.step h3 { font-size: 1rem; font-weight: 700; color: var(--text-bright); margin-bottom: 0.5rem; }
+.step p { font-size: 0.9rem; color: var(--text-dim); }
+
+/* ---- PRICING ---- */
+#pricing { background: var(--bg); }
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 1rem; }
+.price-item {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 1.75rem; text-align: center; transition: border-color 0.3s;
+}
+.price-item:hover { border-color: var(--accent); }
+.price-item h3 { font-size: 1rem; font-weight: 700; color: var(--text-bright); margin-bottom: 0.5rem; }
+.price-item .price { font-size: 1.15rem; font-weight: 700; color: var(--accent); margin-bottom: 0.35rem; }
+.price-item .note { font-size: 0.82rem; color: var(--text-dim); }
+
+/* ---- CONTACT ---- */
+#contact { background: var(--bg); }
+#contact .contact-inner { max-width: 560px; }
+#contact p { font-size: 1.05rem; color: var(--text); margin-bottom: 1.5rem; line-height: 1.7; }
+.contact-links { display: flex; flex-direction: column; gap: 1rem; }
+.contact-links a {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  color: var(--text-bright); text-decoration: none; font-weight: 600; font-size: 1rem;
+  transition: color 0.2s;
+}
+.contact-links a:hover { color: var(--accent); }
+.contact-links .label { color: var(--text-dim); font-weight: 400; font-size: 0.9rem; }
+
+/* ---- FOOTER ---- */
+footer {
+  text-align: center; padding: 3rem 1.25rem; border-top: 1px solid var(--border);
+  font-size: 0.85rem; color: var(--text-dim);
+}
+footer a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+footer a:hover { color: var(--accent); }
+footer .footer-links { margin-top: 0.75rem; display: flex; justify-content: center; gap: 1.5rem; }
+
+/* ---- ANIMATIONS ---- */
+.reveal {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">camou<span>.dev</span></a>
+  <div class="logo">camou<span>.</span>dev</div>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#process">Process</a></li>
     <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
-  <div class="nav-cta-wrap"><a href="#contact" class="nav-cta">Let's Talk</a></div>
-  <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+  <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<div class="mobile-menu">
-  <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Services</a>
-  <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('open')">About</a>
-  <a href="#pricing" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Pricing</a>
-  <a href="#contact" class="btn btn-primary" onclick="document.querySelector('.mobile-menu').classList.remove('open')">Let's Talk</a>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#process" onclick="closeMenu()">Process</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
 
-<section class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <h1>Ernesto Camou</h1>
-      <p class="tagline">AI, DevOps &amp; Web Solutions</p>
-      <p class="location">Based in New York City</p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">Free Consultation</a>
-        <a href="#services" class="btn btn-outline">What I Do</a>
-      </div>
-    </div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <h1>Camou</h1>
+    <p class="tagline">AI, DevOps &amp; Web Solutions</p>
+    <p class="location"><span>&#9679;</span> Based in New York City &nbsp;|&nbsp; 🇺🇸 English &amp; 🇲🇽 Español</p>
+    <a href="#contact" class="cta">Let's Talk</a>
   </div>
 </section>
 
+<!-- SERVICES -->
 <section id="services">
-  <div class="container">
-    <div class="fade-in">
-      <p class="section-label">What I Do</p>
-      <h2 class="section-title">Solutions that actually work.</h2>
-      <p class="section-sub">I build, deploy, and maintain the technology your business runs on.</p>
-    </div>
-    <div class="services-grid fade-in">
-      <div class="service-card">
-        <div class="service-icon">🤖</div>
+  <div class="section-inner">
+    <span class="section-label reveal">Services</span>
+    <h2 class="section-title reveal">What I Do</h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="icon">🤖</div>
         <h3>AI Assistants</h3>
-        <p>Custom AI bots for your business. Answers customers via WhatsApp and SMS, 24/7 — in English and Spanish.</p>
-        <a href="https://jannikai.com" class="service-link">Learn more at Jannik AI →</a>
+        <p>Custom AI bots for your business. Answers customers via WhatsApp and SMS, 24/7. No missed leads, no hold music. <a href="https://jannikai.com" target="_blank" rel="noopener">Learn more at jannikai.com</a></p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🔒</div>
+      <div class="service-card reveal">
+        <div class="icon">🔒</div>
         <h3>Private AI Infrastructure</h3>
-        <p>On-premise AI deployments. Mac Studio + open-source models. HIPAA and compliance ready. Data never leaves your building.</p>
+        <p>On-premise AI deployments that stay on your network. Mac Studio clusters running open-source models. HIPAA and compliance ready.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🌐</div>
+      <div class="service-card reveal">
+        <div class="icon">🌐</div>
         <h3>Websites &amp; Hosting</h3>
-        <p>Clean, fast websites for small businesses. Menus, landing pages, portfolios. Hosted and maintained — you don't touch a server.</p>
+        <p>Clean, fast websites for small businesses. Menus, landing pages, portfolios — built right, hosted, and maintained so you don't have to think about it.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">⚙️</div>
+      <div class="service-card reveal">
+        <div class="icon">⚙️</div>
         <h3>DevOps Consulting</h3>
-        <p>Cloud infrastructure, Kubernetes, CI/CD, Terraform, Ansible. Remote or on-site. I make your deployments boring (in a good way).</p>
+        <p>Cloud infrastructure, Kubernetes, CI/CD pipelines, Terraform, Ansible. Remote or on-site. I make your systems reliable and your deploys boring.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="about" style="background:var(--bg2)">
-  <div class="container">
-    <div class="fade-in">
-      <p class="section-label">About</p>
-      <h2 class="section-title">The short version.</h2>
-    </div>
-    <div class="about-section fade-in">
-      <div class="about-text">
-        <p>DevOps and SRE engineer based in NYC. 10+ years building and managing cloud infrastructure — OpenShift, Kubernetes, AWS, Azure, the works.</p>
-        <p>More recently, I've been building and deploying AI solutions for businesses across industries. Not the kind that lives in a pitch deck — the kind that actually runs in production and talks to your customers.</p>
-        <div class="about-quote">"I'm not a startup with a pitch deck. I'm the guy who actually does the work."</div>
-      </div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <span class="section-label reveal">About</span>
+    <h2 class="section-title reveal">Who I Am</h2>
+    <div class="about-text reveal">
+      <p>A DevOps and AI consulting practice based in New York City with over 10 years in cloud infrastructure — OpenShift, Kubernetes, AWS, Azure, and everything that holds production together at 3 AM.</p>
+      <p>We've built and deployed AI solutions for businesses across industries, from custom chatbots that handle customer service to private infrastructure that keeps sensitive data where it belongs.</p>
+      <p><strong>Fully bilingual — English and Spanish.</strong> We work with businesses that need tech solutions in either language, from setup to support.</p>
+      <div class="quote">"We're not a startup with a pitch deck. We're the people who actually do the work."</div>
     </div>
   </div>
 </section>
 
+<!-- PROCESS -->
 <section id="process">
-  <div class="container">
-    <div class="fade-in">
-      <p class="section-label">How I Work</p>
-      <h2 class="section-title">Straightforward process. No runaround.</h2>
-    </div>
-    <div class="process-steps fade-in">
-      <div class="process-step">
-        <h3>Free consultation</h3>
-        <p>30 minutes. You tell me what you need. I tell you if I can help and what it'll take.</p>
+  <div class="section-inner">
+    <span class="section-label reveal">Process</span>
+    <h2 class="section-title reveal">How I Work</h2>
+    <div class="process-steps">
+      <div class="step reveal">
+        <h3>Free Consultation</h3>
+        <p>30 minutes. Tell me what you need. No pressure, no sales pitch.</p>
       </div>
-      <div class="process-step">
-        <h3>Honest quote</h3>
-        <p>I scope the project and give you a real number. No surprise invoices, no scope creep games.</p>
+      <div class="step reveal">
+        <h3>Honest Quote</h3>
+        <p>You get a clear price and timeline. No hidden fees, no scope creep surprises.</p>
       </div>
-      <div class="process-step">
-        <h3>Build &amp; deploy</h3>
-        <p>I build it, deploy it, and make sure it actually works. You get updates, not excuses.</p>
+      <div class="step reveal">
+        <h3>I Build It</h3>
+        <p>I build it, deploy it, and make sure it actually works. Not a handoff — a delivery.</p>
       </div>
-      <div class="process-step">
-        <h3>Ongoing support</h3>
-        <p>If you need it, I'm here. Maintenance, updates, scaling — whatever keeps things running.</p>
+      <div class="step reveal">
+        <h3>Ongoing Support</h3>
+        <p>If you need it, I'm here. Maintenance, updates, scaling — whatever comes next.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="pricing" style="background:var(--bg2)">
-  <div class="container">
-    <div class="fade-in">
-      <p class="section-label">Pricing</p>
-      <h2 class="section-title">What things cost.</h2>
-      <p class="section-sub">Transparent pricing. No "contact us for a quote" games — here's the range.</p>
-    </div>
-    <div class="pricing-table fade-in">
-      <div class="pricing-row">
-        <div class="service-name">Websites</div>
-        <div class="service-price">$500–2,000 one-time + $50–100/mo hosting</div>
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <span class="section-label reveal">Pricing</span>
+    <h2 class="section-title reveal">Simple, Honest Pricing</h2>
+    <div class="pricing-grid">
+      <div class="price-item reveal">
+        <h3>Websites</h3>
+        <div class="price">$500 – $2,000</div>
+        <div class="note">one-time + $50–100/mo hosting</div>
       </div>
-      <div class="pricing-row">
-        <div class="service-name">AI Assistants</div>
-        <div class="service-price">from $500/month via <a href="https://jannikai.com" style="color:var(--amber)">Jannik AI</a></div>
+      <div class="price-item reveal">
+        <h3>AI Assistants</h3>
+        <div class="price">from $500/mo</div>
+        <div class="note">via Jannik AI</div>
       </div>
-      <div class="pricing-row">
-        <div class="service-name">Private AI Setup</div>
-        <div class="service-price">from $1,500/month</div>
+      <div class="price-item reveal">
+        <h3>Private AI Setup</h3>
+        <div class="price">from $1,500/mo</div>
+        <div class="note">on-premise deployment</div>
       </div>
-      <div class="pricing-row">
-        <div class="service-name">DevOps Consulting</div>
-        <div class="service-price">$150–250/hour</div>
+      <div class="price-item reveal">
+        <h3>DevOps Consulting</h3>
+        <div class="price">$150 – $250/hr</div>
+        <div class="note">remote or on-site</div>
       </div>
-      <div class="pricing-row">
-        <div class="service-name">Custom Projects</div>
-        <div class="service-price">Let's talk</div>
+      <div class="price-item reveal">
+        <h3>Custom Projects</h3>
+        <div class="price">Let's talk</div>
+        <div class="note">scoped to your needs</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
-  <div class="container contact-section fade-in">
-    <p class="section-label">Contact</p>
-    <h2 class="section-title" style="text-align:center">Let's talk about what you need.</h2>
-    <p class="section-sub" style="margin:0 auto 1rem;text-align:center">30-minute consultation, free, no strings. Just a conversation about your project.</p>
-    <a href="mailto:ernesto@camou.dev" class="btn btn-primary">Get in Touch</a>
-    <div class="contact-links">
-      <a href="mailto:ernesto@camou.dev" class="contact-link">📧 ernesto@camou.dev</a>
-      <a href="https://linkedin.com/in/ernestocamou" class="contact-link">💼 LinkedIn</a>
+  <div class="section-inner">
+    <span class="section-label reveal">Contact</span>
+    <h2 class="section-title reveal">Let's Talk About What You Need</h2>
+    <div class="contact-inner reveal">
+      <p>Whether it's a quick question or a full project — reach out. First consultation is free.</p>
+      <div class="contact-links">
+        <a href="mailto:hello@camou.dev">
+          <span>✉</span> hello@camou.dev
+        </a>
+        <a href="https://linkedin.com/in/" target="_blank" rel="noopener">
+          <span>in</span> LinkedIn
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <p>© 2026 Ernesto Camou — New York City</p>
+  <p>&copy; 2026 Camou — New York City</p>
   <div class="footer-links">
-    <a href="https://jannikai.com">Jannik AI</a>
-    <a href="https://linkedin.com/in/ernestocamou">LinkedIn</a>
-    <a href="https://github.com/ernestocamou">GitHub</a>
+    <a href="https://jannikai.com" target="_blank" rel="noopener">jannikai.com</a>
+    <a href="https://linkedin.com/in/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
   </div>
 </footer>
 
 <script>
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+// Mobile menu
+function toggleMenu() {
+  document.querySelector('.hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.querySelector('.hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
